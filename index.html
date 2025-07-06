@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
-<head><meta charset="UTF-8"><title>Login mrzybtv</title>
-<style>body{font-family:sans-serif;padding:20px}input{width:100%;padding:10px;margin:8px 0}button{padding:10px;width:100%;background:#007BFF;color:white;border:none;cursor:pointer}</style>
+<head>
+  <meta charset="UTF-8">
+  <title>Login mrzybtv</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input { width: 100%; padding: 10px; margin: 8px 0; }
+    button { padding: 10px; width: 100%; background: #007BFF; color: white; border: none; cursor: pointer; }
+  </style>
 </head>
 <body>
   <h2>Login Premium mrzybtv</h2>
@@ -9,13 +15,29 @@
   <input type="password" id="pass" placeholder="Password">
   <button onclick="login()">Login</button>
   <p id="msg" style="color:red;"></p>
+
   <script>
-    const accounts = {"mutia":"mut14r4y4","raihan":"r41h4nr4y4","balqis":"b4lq15r4y4"};
-    function login(){
-      const u=document.getElementById('user').value.trim();
-      const p=document.getElementById('pass').value.trim();
-      if(accounts[u]===p){window.location.href="go:Home";}
-      else{document.getElementById('msg').textContent="Username atau password salah!";}
+    const accounts = {
+      "mutia": "mut14r4y4",
+      "raihan": "r41h4nr4y4",
+      "balqis": "b4lq15r4y4"
+    };
+
+    // Cek apakah sudah pernah login
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      window.location.href = "premium.html";
+    }
+
+    function login() {
+      const u = document.getElementById('user').value.trim();
+      const p = document.getElementById('pass').value.trim();
+      if (accounts[u] === p) {
+        // Simpan status login
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "premium.html";
+      } else {
+        document.getElementById('msg').textContent = "Username atau password salah!";
+      }
     }
   </script>
 </body>
